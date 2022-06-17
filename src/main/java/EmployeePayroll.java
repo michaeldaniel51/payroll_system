@@ -49,7 +49,6 @@ public class EmployeePayroll {
             double netpay = employeeRecord.getEmpBasicPay() + employeeRecord.getEmpOvertimePay() - employeeRecord.getEmpTotalDeductions();
             employeeRecord.setEmpNetPay(netpay);
 
-
             employeeRecords.put(employeeRecord.getEmpID(), employeeRecord);
 
         }
@@ -59,10 +58,7 @@ public class EmployeePayroll {
 
     public EmployeeRecord updateEmployee( EmployeeRecord employeeRecord) throws Exception {
 
-
         EmployeeRecord byId = findById(employeeRecord.getEmpID());
-
-
 
         if (employeeRecord.getEmpBasicPay() != 0) {
             byId.setEmpBasicPay(employeeRecord.getEmpBasicPay());
@@ -125,9 +121,7 @@ public class EmployeePayroll {
 
 //        employeeRecords.removeIf(e -> e.getEmpID().equals(employeeId));
 
-
     }
-
 
     public EmployeeRecord findById(String empId) throws Exception {
 
@@ -140,9 +134,6 @@ public class EmployeePayroll {
 //      if (employeeRecord == null){
 //        throw new Exception("This id doesnt exist");
 //       }
-
-
-
         return employeeRecord;
     }
 
@@ -161,19 +152,15 @@ public class EmployeePayroll {
         }
     }
 
+    public void findByNetPay(double from, double to){
 
-    public void findByNetPay(double from, double to) throws Exception {
-
-        List<EmployeeRecord> netPay = employeeRecords.values().stream()
+                employeeRecords.values().stream()
                 .filter(pay -> pay.getEmpNetPay() >= from && pay.getEmpNetPay() <= to)
-                .collect(Collectors.toList());
-        if (netPay.isEmpty()) {
-            throw new Exception(" not in range");
-        }else {
-            System.out.println(netPay);
-        }
+                .sorted(((o1, o2) -> (int) (o1.getEmpNetPay() - o2.getEmpNetPay())))
+                .collect(Collectors.toList()).forEach(System.out::println);
 
     }
+
     public List<EmployeeRecord> findAllEmployees(){
        System.out.println(employeeRecords.values());
         return new ArrayList<>(employeeRecords.values());

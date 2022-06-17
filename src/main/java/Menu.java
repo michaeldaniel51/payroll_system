@@ -17,7 +17,7 @@ public class Menu {
 //        System.out.println(Arrays.asList(record1,record2,record3,record4));
 
 
-        record.deleteEmployee("1234");
+       // record.deleteEmployee("1234");
        // record.findById("1234");
 
       //
@@ -32,9 +32,9 @@ public class Menu {
 
 
         //record.findByEmpDept("teacher");
-          record.findAllEmployees();
-        System.out.println(record.findAllEmployees().size());
-       // record.findByNetPay(621,3000000);
+         // record.findAllEmployees();
+       // System.out.println(record.findAllEmployees().size());
+        record.findByNetPay(621,3000000);
 
 
     }
