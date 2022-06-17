@@ -16,14 +16,8 @@ public class EmployeeRecord {
     private double empNetPay;
     private int size;
 
-    //"1234","michael","daniel","developer",'m',20.0,30.3,43.4,45.6,85.5,35.6,43.5,3.5,53.2,12
-    //"6543","john","doe","programmer",'m',92.1,320.3,273.1,345.1,853.0,345.3,423.5,337.5,100.2,9
-    //"2456","sam","stone","driver",'f',678.6,880.3,456.4,57.6,87.5,95.6,343.5,66.5,43.2,200
-    //"9876","charles","dom","teacher",'f',50.3,20.3,4.4,25.2,53.2,3.6,33.5,2.2,5.3,14
     public EmployeeRecord() {
     }
-
-
 
     public EmployeeRecord(String empID, String empLastName, String empFirstName, String empDepartment, char empGender, double empHrsWorked, double empRatePerHour, double empSSSDeduction, double empTaxDeduction, double empOtherDeductions, double empBasicPay, double empOvertimePay, double empTotalDeductions, double empNetPay, int size) {
         this.empID = empID;
