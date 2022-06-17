@@ -1,6 +1,5 @@
 public class EmployeeRecord {
 
-
     private String empID;
     private String empLastName;
     private String empFirstName;
@@ -24,6 +23,8 @@ public class EmployeeRecord {
     public EmployeeRecord() {
     }
 
+
+
     public EmployeeRecord(String empID, String empLastName, String empFirstName, String empDepartment, char empGender, double empHrsWorked, double empRatePerHour, double empSSSDeduction, double empTaxDeduction, double empOtherDeductions, double empBasicPay, double empOvertimePay, double empTotalDeductions, double empNetPay, int size) {
         this.empID = empID;
         this.empLastName = empLastName;
@@ -46,6 +47,7 @@ public class EmployeeRecord {
 
     public String getEmpID() {
         return empID;
+
     }
 
     public void setEmpID(String empID) {

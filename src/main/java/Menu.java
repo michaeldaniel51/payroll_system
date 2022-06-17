@@ -17,18 +17,23 @@ public class Menu {
 //        System.out.println(Arrays.asList(record1,record2,record3,record4));
 
 
-      //  record.deleteEmployee("1234");
+        record.deleteEmployee("1234");
        // record.findById("1234");
 
-        //record.findByEmpDept("developer");
+      //
 
 //        EmployeeRecord emp = record.updateEmployee("1234",new EmployeeRecord());
 //            emp.setEmpFirstName("johnny");
 //            emp.setEmpLastName("deep");
 
-       EmployeeRecord e = record.updateEmployee(new EmployeeRecord("1234","johnny","deep","teacher",'f',50.3,20.3,4.4,25.2,53.2,3.6,33.5,2.2,5.3,14));
-        System.out.println(e);
-        record.findAllEmployees();
+     //  EmployeeRecord e = record.updateEmployee(new EmployeeRecord("1234",null,null,"teacher",'f',50.3,20.3,4.4,25.2,53.2,3.6,33.5,2.2,5.3,14));
+      //  System.out.println(e);
+
+
+
+        //record.findByEmpDept("teacher");
+          record.findAllEmployees();
+        System.out.println(record.findAllEmployees().size());
        // record.findByNetPay(621,3000000);
 
 

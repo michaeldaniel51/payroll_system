@@ -1,7 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class EmployeePayroll {
 
@@ -53,7 +51,6 @@ public class EmployeePayroll {
 
 
             employeeRecords.put(employeeRecord.getEmpID(), employeeRecord);
-            //employeeRecords.add(employeeRecord.getEmpID(),employeeRecord);
 
         }
         return employeeRecord;
@@ -91,9 +88,14 @@ public class EmployeePayroll {
         if (employeeRecord.getEmpFirstName() != null) {
             byId.setEmpFirstName(employeeRecord.getEmpFirstName());
         }
-        if (employeeRecord.getEmpLastName() != null) {
+        if (employeeRecord.getEmpLastName() == null){
+            byId.setEmpLastName(byId.getEmpLastName());
+        }else {
             byId.setEmpLastName(employeeRecord.getEmpLastName());
         }
+//        if (employeeRecord.getEmpLastName() != null) {
+//
+//        }
         if (employeeRecord.getEmpTaxDeduction() != 0) {
             byId.setEmpTaxDeduction(employeeRecord.getEmpTaxDeduction());
         }
@@ -117,11 +119,9 @@ public class EmployeePayroll {
     public void deleteEmployee(String employeeId) throws Exception {
 
 
-//        EmployeeRecord employeeRecord = employeeRecords.stream()
-//                .filter(ide -> employeeId.equals(ide.getEmpID()))
-//                .findFirst()
-//                .orElseThrow(() -> new Exception("employee not present"));
-//        employeeRecords.remove(employeeRecord);
+        String employeeRecord = employeeRecords.keySet().stream()
+                .filter(ide -> ide.equals(employeeId)).findFirst().orElseThrow();
+        employeeRecords.remove(employeeRecord);
 
 //        employeeRecords.removeIf(e -> e.getEmpID().equals(employeeId));
 
@@ -134,48 +134,49 @@ public class EmployeePayroll {
         EmployeeRecord employeeRecord = employeeRecords.get(empId);
 
         if (Objects.isNull(employeeRecord)) {
-           throw new Exception("This id doesnt exist");
+            throw new Exception("This id doesnt exist");
         }
 
-     //   System.out.println(employeeRecord);
+//      if (employeeRecord == null){
+//        throw new Exception("This id doesnt exist");
+//       }
+
+
+
         return employeeRecord;
     }
 
 
     public void findByEmpDept(String empDept) {
 
-//        List<EmployeeRecord> employeeDeptRecord = employeeRecords.stream()
-//                .filter(em -> empDept.equals(em.getEmpDepartment())).collect(Collectors.toList());
-//        System.out.println(employeeDeptRecord);
+        List<EmployeeRecord> emp = employeeRecords.values()
+                .stream()
+                .filter(em -> em.getEmpDepartment().equals(empDept))
+                .collect(Collectors.toList());
 
-
-
-        
+        if(emp.isEmpty()){
+            System.out.println("employee's department not found in the system ");
+        }else {
+            System.out.println(emp);
+        }
     }
 
 
     public void findByNetPay(double from, double to) throws Exception {
 
-//        List<EmployeeRecord> netPay = employeeRecords.stream()
-//                .filter(pay -> pay.getEmpNetPay() >= from && pay.getEmpNetPay() <= to)
-//                .collect(Collectors.toList());
-//        if (netPay.isEmpty()) {
-//            throw new Exception(" not in range");
-//        }
-//        System.out.println(netPay);
+        List<EmployeeRecord> netPay = employeeRecords.values().stream()
+                .filter(pay -> pay.getEmpNetPay() >= from && pay.getEmpNetPay() <= to)
+                .collect(Collectors.toList());
+        if (netPay.isEmpty()) {
+            throw new Exception(" not in range");
+        }else {
+            System.out.println(netPay);
+        }
 
-
-//        for (EmployeeRecord e: employeeRecords) {
-//            if (e.getEmpNetPay() >= from && e.getEmpNetPay() <= to){
-//
-//                //System.out.println(e);
-//            }
-//        }
-//
     }
-    public void findAllEmployees(){
-        System.out.println(employeeRecords.values());
-        //return employeeRecords;
+    public List<EmployeeRecord> findAllEmployees(){
+       System.out.println(employeeRecords.values());
+        return new ArrayList<>(employeeRecords.values());
 
     }
 
